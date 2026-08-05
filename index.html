@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Justice for Jorge — a source-labeled archive documenting the case of Jorge M. DePina, built alongside the documentary THIS IS LIKE A CRIME: The Lost Archive of Failed Justice.">
+  <title>Justice for Jorge — Homepage (Working Draft)</title>
+  <style>
+/* ==========================================================================
+   Justice for Jorge — homepage draft
+   Design tokens
+   ========================================================================== */
+:root {
+  /* colors */
+  --color-black: #0a0a0a;
+  --color-panel: #131313;
+  --color-panel-2: #1c1c1c;
+  --color-paper: #f2eee6;
+  --color-paper-2: #e7e1d5;
+  --color-white: #f5f2ec;
+  --color-muted: #a8a29b;
+  --color-muted-dark: #6b6660;
+  --color-line: #2c2c2c;
+  --color-line-light: #cfc8b8;
+  --color-red: #c81d25;
+  --color-red-dim: #7a1216;
+
+  /* source-label system: text as well as color, per design brief */
+  --label-court: #9fb3bd;
+  --label-court-bg: rgba(159, 179, 189, 0.14);
+  --label-reporting: #cfa73f;
+  --label-reporting-bg: rgba(207, 167, 63, 0.16);
+  --label-testimony: #86aed0;
+  --label-testimony-bg: rgba(134, 174, 208, 0.14);
+  --label-disputed: #e2545c;
+  --label-disputed-bg: rgba(200, 29, 37, 0.16);
+
+  /* type scale */
+  --font-display: "Arial Narrow", Arial, sans-serif;
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+
+  /* spacing scale */
+  --space-1: 0.4rem;
+  --space-2: 0.8rem;
+  --space-3: 1.2rem;
+  --space-4: 1.8rem;
+  --space-5: 2.6rem;
+  --space-6: 3.6rem;
+  --space-7: 5rem;
+
+  /* layout */
+  --content-max: 1440px;
+  --radius: 2px;
+  --focus-ring: 3px solid #ffffff;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-weight: 800;
+  margin: 0;
+}
+
+p { margin: 0 0 var(--space-3); }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-white);
+  color: var(--color-black);
+  padding: var(--space-2) var(--space-3);
+  z-index: 100;
+}
+.skip:focus { left: var(--space-3); top: var(--space-2); }
+
+:focus-visible { outline: var(--focus-ring); outline-offset: 3px; }
+
+/* ==========================================================================
+   Draft banner — safety flag, keep visible until publication is approved
+   ========================================================================== */
+.draft-banner {
+  background: var(--label-disputed-bg);
+  border-bottom: 1px solid var(--color-red);
+  color: var(--color-white);
+  font-size: 0.78rem;
+  padding: var(--space-2) var(--space-3);
+  text-align: center;
+}
+.draft-banner a { color: var(--label-reporting); text-decoration: underline; }
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+}
+.btn--primary { background: var(--color-red); color: var(--color-white); }
+.btn--primary:hover { background: var(--color-red-dim); }
+.btn--outline { background: transparent; border-color: currentColor; }
+.btn--cta { background: var(--color-red); color: var(--color-white); padding: 0 var(--space-3); }
+.btn.is-placeholder { opacity: 0.85; }
+.placeholder-flag { font-weight: 500; text-transform: none; letter-spacing: 0; font-size: 0.72rem; opacity: 0.8; }
+
+/* ==========================================================================
+   Source label system
+   ========================================================================== */
+.source-label {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.62rem;
+  padding: 0.3rem 0.55rem;
+  border-radius: var(--radius);
+  border: 1px solid currentColor;
+}
+.source-label--court { color: var(--label-court); background: var(--label-court-bg); }
+.source-label--reporting { color: var(--label-reporting); background: var(--label-reporting-bg); }
+.source-label--testimony { color: var(--label-testimony); background: var(--label-testimony-bg); }
+.source-label--disputed { color: var(--label-disputed); background: var(--label-disputed-bg); font-weight: 800; }
+
+/* ==========================================================================
+   Header / nav
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--color-black);
+  border-bottom: 1px solid var(--color-line);
+}
+.header-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-2) var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.brand {
+  text-decoration: none;
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+}
+.brand-line1 { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-white); }
+.brand-line2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-white); }
+.brand-tag { font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-red); }
+
+.site-nav {
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.site-nav a {
+  text-decoration: none;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  padding: var(--space-2) 0;
+}
+.site-nav a:hover, .site-nav a:focus-visible { color: var(--color-white); }
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4.4vw, 3.6rem);
+  line-height: 1.02;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+.hero h1 .accent { color: var(--color-red); }
+.hero-intro { color: var(--color-muted); font-size: 1rem; line-height: 1.7; max-width: 44ch; }
+.hero-intro .source-label { margin: 0 var(--space-1) var(--space-1) 0; vertical-align: middle; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-4); }
+
+.hero-media { position: relative; }
+.portrait-placeholder {
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--color-line);
+  background: radial-gradient(circle at 50% 30%, #3a352d, #0d0d0c 68%);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  padding: var(--space-4);
+}
+
+/* ==========================================================================
+   Mission / stats
+   ========================================================================== */
+.mission {
+  background: var(--color-panel);
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  padding: var(--space-6) var(--space-4);
+}
+.mission, .timeline, .documentary, .join {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+.mission {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+.eyebrow { color: var(--color-red); font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 var(--space-2); }
+.mission h2, .timeline h2, .documentary h2, .join h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); margin-bottom: var(--space-3); }
+.mission-copy p { color: var(--color-muted); max-width: 42ch; }
+
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.stat { border-left: 2px solid var(--color-red); padding-left: var(--space-3); }
+.stat-figure { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; margin: 0; line-height: 1; color: var(--color-white); }
+.stat-figure span { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-muted); margin-left: 0.3em; }
+.stat--open .stat-figure { font-size: 1.4rem; color: var(--color-red); }
+.stat-label { color: var(--color-muted); font-size: 0.85rem; margin: 0.4rem 0 0.6rem; }
+.stat-source { margin: 0; }
+
+/* ==========================================================================
+   Timeline
+   ========================================================================== */
+.timeline { background: var(--color-paper); color: var(--color-black); padding: var(--space-6) var(--space-4); }
+.timeline-copy { max-width: 46ch; margin-bottom: var(--space-5); }
+.timeline-copy p { color: #4a453d; }
+
+.timeline-track {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-3);
+  border-top: 2px solid var(--color-line-light);
+  padding-top: var(--space-4);
+  margin-bottom: var(--space-5);
+  position: relative;
+}
+.timeline-entry {
+  border-left: 3px solid var(--color-red);
+  padding-left: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.timeline-year { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; }
+.timeline-desc { font-size: 0.78rem; color: #3a362f; line-height: 1.5; margin: 0; }
+
+/* ==========================================================================
+   Documentary feature
+   ========================================================================== */
+.documentary {
+  background: var(--color-black);
+  padding: var(--space-6) var(--space-4);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+.video-placeholder {
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--color-line);
+  background: linear-gradient(160deg, #1c1c1c, #050505 75%);
+  display: grid;
+  place-items: center;
+  justify-items: center;
+  gap: var(--space-2);
+  text-align: center;
+  padding: var(--space-4);
+}
+.video-placeholder-label { font-family: var(--font-display); text-transform: uppercase; color: var(--color-muted); font-size: 0.85rem; }
+.video-placeholder-label strong { display: block; font-size: 1.3rem; color: var(--color-white); }
+.play-btn {
+  width: 56px; height: 56px;
+  border: 1px solid var(--color-white);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--color-white);
+  opacity: 0.6;
+}
+.documentary-copy p { color: var(--color-muted); max-width: 48ch; }
+.documentary-copy em { color: var(--color-white); font-style: italic; }
+
+/* ==========================================================================
+   Join / signup
+   ========================================================================== */
+.join {
+  padding: var(--space-6) var(--space-4);
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: var(--space-6);
+  border-top: 1px solid var(--color-line);
+}
+.join-copy p { color: var(--color-muted); max-width: 50ch; }
+
+.signup-form { margin-top: var(--space-4); max-width: 34rem; }
+.signup-form label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-muted); margin-bottom: var(--space-1); }
+.signup-row { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.signup-row input {
+  flex: 1 1 14rem;
+  min-height: 44px;
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  color: var(--color-white);
+  padding: 0 var(--space-3);
+  font-size: 0.95rem;
+  border-radius: var(--radius);
+}
+.signup-row input:focus-visible { outline: var(--focus-ring); outline-offset: 2px; }
+.form-note { font-size: 0.72rem; color: var(--color-muted-dark); margin-top: var(--space-2); }
+
+.socials { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-4); }
+.social-placeholder { font-size: 0.78rem; color: var(--color-muted); border: 1px solid var(--color-line); padding: var(--space-1) var(--space-2); border-radius: var(--radius); display: inline-block; }
+.social-placeholder em { font-style: normal; color: var(--color-muted-dark); }
+
+.join-contact {
+  border: 1px solid var(--color-line);
+  padding: var(--space-4);
+  align-self: start;
+}
+.join-contact h3 { font-size: 1rem; margin-bottom: var(--space-2); }
+.placeholder-email { font-family: var(--font-body); font-size: 0.9rem; color: var(--color-red); word-break: break-word; }
+.contact-callout { margin-bottom: var(--space-2); }
+
+.chatbox {
+  margin-top: var(--space-4);
+  border: 1px solid var(--color-line);
+  background: var(--color-panel);
+  padding: var(--space-3);
+}
+.chatbox h4 { margin: 0 0 var(--space-1); font-size: 1rem; }
+.chatbox-intro { font-size: .78rem; color: var(--color-muted); margin: 0 0 var(--space-3); }
+.chatbox-form { display: grid; gap: var(--space-2); }
+.chatbox-form label { font-size: .7rem; color: var(--color-muted); text-transform: uppercase; letter-spacing: .05em; }
+.chatbox-form input, .chatbox-form textarea { width: 100%; background: var(--color-black); color: var(--color-white); border: 1px solid var(--color-line); padding: .7rem; font: inherit; border-radius: var(--radius); }
+.chatbox-form textarea { min-height: 92px; resize: vertical; }
+.chatbox-form input:focus-visible, .chatbox-form textarea:focus-visible { outline: var(--focus-ring); outline-offset: 2px; }
+.chatbox-check { display: flex; gap: .55rem; align-items: flex-start; color: var(--color-muted); font-size: .72rem; text-transform: none; letter-spacing: 0; }
+.chatbox-check input { width: auto; margin-top: .15rem; }
+.chatbox-status { min-height: 1.2rem; color: var(--color-red); font-size: .72rem; margin: 0; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  border-top: 1px solid var(--color-line);
+  padding: var(--space-5) var(--space-4) var(--space-6);
+  max-width: var(--content-max);
+  margin: 0 auto;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+}
+.footer-top { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: space-between; align-items: center; margin-bottom: var(--space-3); }
+.footer-top nav { display: flex; gap: var(--space-3); }
+.footer-top a { text-decoration: underline; }
+
+.methodology { border: 1px solid var(--color-line); border-radius: var(--radius); padding: var(--space-2) var(--space-3); margin-bottom: var(--space-3); }
+.methodology summary { cursor: pointer; font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.78rem; padding: var(--space-1) 0; }
+.methodology ul { margin-top: var(--space-2); display: flex; flex-direction: column; gap: var(--space-2); }
+.methodology li { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; font-size: 0.78rem; }
+.methodology cite { font-style: italic; }
+
+.copyright { margin: 0; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-media { order: -1; max-width: 26rem; }
+  .mission { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .documentary { grid-template-columns: 1fr; }
+  .documentary-media { max-width: 32rem; }
+  .join { grid-template-columns: 1fr; }
+  .timeline-track { grid-template-columns: repeat(4, 1fr); row-gap: var(--space-4); }
+}
+
+@media (max-width: 700px) {
+  .header-inner { flex-wrap: wrap; padding: var(--space-2) var(--space-3); }
+  .site-nav { order: 3; width: 100%; gap: var(--space-3); border-top: 1px solid var(--color-line); padding-top: var(--space-1); }
+  .hero, .mission, .timeline, .documentary, .join, .site-footer { padding-left: var(--space-3); padding-right: var(--space-3); }
+  .stats { grid-template-columns: 1fr; }
+  .timeline-track { grid-template-columns: repeat(2, 1fr); }
+  .hero-actions, .documentary .hero-actions { flex-direction: column; align-items: stretch; }
+  .footer-top { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 420px) {
+  .timeline-track { grid-template-columns: 1fr; }
+  .brand-line2 { font-size: 1.25rem; }
+  .signup-row { flex-direction: column; }
+  .signup-row .btn { width: 100%; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="draft-banner" role="note">
+    <strong>Working prototype.</strong> Draft copy, placeholder assets, and unverified figures throughout. Not approved for public release — sent for family review only.
+  </div>
+
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="brand" href="#top">
+        <span class="brand-line1">Justice for</span>
+        <span class="brand-line2">Jorge</span>
+        <span class="brand-tag">The fight continues</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#story">The Story</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#documentary">Documentary</a>
+        <a href="#join">Get Involved</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn--cta" href="#join">Stay Updated</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-copy">
+        <h1 id="hero-heading">
+          <span>A fight for justice.</span>
+          <span class="accent">A legacy of truth.</span>
+        </h1>
+        <p class="hero-intro">
+          In December 1997, a fatal altercation outside a Rhode Island nightclub led to Jorge&nbsp;M.&nbsp;DePina's arrest and later conviction.
+          <span class="source-label source-label--disputed">Disputed claim</span>
+          His family maintains the case involved corruption and a miscarriage of justice — allegations that have not been established by any court and remain the family's contested position, not a finding of fact.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="#story">Explore the story</a>
+          <a class="btn btn--outline is-placeholder" href="#documentary" aria-describedby="hero-teaser-note">
+            Documentary teaser <span class="placeholder-flag">— coming soon</span>
+          </a>
+        </div>
+        <p id="hero-teaser-note" class="visually-hidden">No teaser footage is available yet. This links to the documentary section for production status.</p>
+      </div>
+      <div class="hero-media">
+        <div class="portrait-placeholder" role="img" aria-label="Placeholder. An approved, family-cleared portrait of Jorge M. DePina is required here; none has been supplied yet.">
+          <span>Approved portrait<br>required — none supplied</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MISSION / STATS ============ -->
+    <section class="mission" id="story" aria-labelledby="mission-heading">
+      <div class="mission-copy">
+        <p class="eyebrow">Our mission</p>
+        <h2 id="mission-heading">Preserving the record.</h2>
+        <p>
+          This project is a family-led effort to recover a case record that nearly disappeared: a vanished advocacy
+          website, court decisions, and unfinished documentary footage. The aim is a responsible, source-labeled
+          archive — not a verdict. Every claim on this site is marked as court record, contemporary reporting,
+          personal testimony, or a disputed claim.
+        </p>
+        <a class="btn btn--outline" href="#timeline">Learn more about the case →</a>
+      </div>
+      <div class="stats" role="list">
+        <div class="stat" role="listitem">
+          <p class="stat-figure">63 <span>pages</span></p>
+          <p class="stat-label">Recovered legal record (<abbr title="DEPINA-7-25-17.pdf">DEPINA-7-25-17.pdf</abbr>)</p>
+          <p class="stat-source"><span class="source-label source-label--court">Court record</span></p>
+        </div>
+        <div class="stat" role="listitem">
+          <p class="stat-figure">7 <span>pages</span></p>
+          <p class="stat-label">Archived FailedJustice1997.com pages recovered</p>
+          <p class="stat-source"><span class="source-label source-label--reporting">Contemporary reporting</span></p>
+        </div>
+        <div class="stat" role="listitem">
+          <p class="stat-figure">3 <span>proceedings</span></p>
+          <p class="stat-label">Court decisions documented in this archive so far (2002, 2013, 2016)</p>
+          <p class="stat-source"><span class="source-label source-label--court">Court record</span></p>
+        </div>
+        <div class="stat stat--open" role="listitem">
+          <p class="stat-figure">Open call</p>
+          <p class="stat-label">Witnesses, attorneys, journalists, and material holders are invited to contact the project</p>
+          <p class="stat-source"><span class="source-label source-label--testimony">Personal testimony</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TIMELINE PREVIEW ============ -->
+    <section class="timeline" id="timeline" aria-labelledby="timeline-heading">
+      <div class="timeline-copy">
+        <p class="eyebrow">Explore the timeline</p>
+        <h2 id="timeline-heading">The record, from the beginning.</h2>
+        <p>
+          Dates below are drawn from the project's planning documents and are pending final verification against
+          primary sources before publication.
+        </p>
+        <a class="btn btn--primary" href="#timeline">View timeline</a>
+      </div>
+
+      <ol class="timeline-track">
+        <li class="timeline-entry">
+          <span class="timeline-year">1997</span>
+          <p class="timeline-desc">A death follows fights outside Club International; arrests, then charges.</p>
+          <span class="source-label source-label--reporting">Contemporary reporting</span>
+        </li>
+        <li class="timeline-entry">
+          <span class="timeline-year">1998</span>
+          <p class="timeline-desc">Trial held.</p>
+          <span class="source-label source-label--court">Court record</span>
+        </li>
+        <li class="timeline-entry">
+          <span class="timeline-year">2002</span>
+          <p class="timeline-desc">Direct appeal decided: DePina's and Monteiro's judgments affirmed; Teixeira's conspiracy judgment affirmed and murder conviction vacated.</p>
+          <span class="source-label source-label--court">Court record</span>
+        </li>
+        <li class="timeline-entry">
+          <span class="timeline-year">2003</span>
+          <p class="timeline-desc">Maria DePina speaks publicly: <q>This is like a crime.</q></p>
+          <span class="source-label source-label--testimony">Personal testimony</span>
+        </li>
+        <li class="timeline-entry">
+          <span class="timeline-year">2013</span>
+          <p class="timeline-desc">Court decides a medical-record discovery request.</p>
+          <span class="source-label source-label--court">Court record</span>
+        </li>
+        <li class="timeline-entry">
+          <span class="timeline-year">2016</span>
+          <p class="timeline-desc">Post-conviction application denied and dismissed; decision documents witnesses, disputed police contacts, evidence issues, and credibility findings.</p>
+          <span class="source-label source-label--court">Court record</span>
+        </li>
+        <li class="timeline-entry">
+          <span class="timeline-year">2025</span>
+          <p class="timeline-desc">Family resumes documentary production and archive recovery.</p>
+          <span class="source-label source-label--testimony">Personal testimony</span>
+        </li>
+      </ol>
+
+      <a class="btn btn--outline is-placeholder" href="#timeline">
+        View full timeline <span class="placeholder-flag">— page pending</span>
+      </a>
+    </section>
+
+    <!-- ============ DOCUMENTARY FEATURE ============ -->
+    <section class="documentary" id="documentary" aria-labelledby="documentary-heading">
+      <div class="documentary-media">
+        <div class="video-placeholder" role="img" aria-label="Placeholder. Documentary teaser video has not been produced yet. No footage is playable here.">
+          <span class="video-placeholder-label">Justice for Jorge<br><strong>The Documentary</strong></span>
+          <span class="play-btn" aria-hidden="true">▶</span>
+          <span class="placeholder-flag">Teaser not yet produced</span>
+        </div>
+      </div>
+      <div class="documentary-copy">
+        <p class="eyebrow">The documentary</p>
+        <h2 id="documentary-heading">A story they tried to bury.</h2>
+        <p>
+          <em>THIS IS LIKE A CRIME: The Lost Archive of Failed Justice</em> is an archival prologue, targeted at
+          8–12 minutes, documenting the family's effort to recover a vanished advocacy website, court records, and
+          unfinished footage. It is presented as a surviving record, not a verdict, and ends with an open call for
+          witnesses and material.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="#join">Get notified</a>
+          <a class="btn btn--outline is-placeholder" href="#documentary" aria-describedby="teaser-note-2">
+            Watch teaser <span class="placeholder-flag">— coming soon</span>
+          </a>
+        </div>
+        <p id="teaser-note-2" class="visually-hidden">No teaser footage is available yet.</p>
+      </div>
+    </section>
+
+    <!-- ============ JOIN THE ARCHIVE ============ -->
+    <section class="join" id="join" aria-labelledby="join-heading">
+      <div class="join-copy">
+        <p class="eyebrow">Join the movement</p>
+        <h2 id="join-heading">Stay connected to the archive.</h2>
+        <p>
+          Get updates as records are recovered, verified, and published. If you were present, represented a party,
+          reported on the case, or hold photographs, tapes, or documents, the project wants to hear from you.
+        </p>
+        <form class="signup-form" action="#" method="post">
+          <label for="signup-email">Email address</label>
+          <div class="signup-row">
+            <input id="signup-email" name="email" type="email" placeholder="Enter your email" autocomplete="email" required>
+            <button class="btn btn--primary" type="submit">Stay updated</button>
+          </div>
+          <p class="form-note">This form is not yet connected to an email service. Please do not submit personal information until it is.</p>
+        </form>
+        <ul class="socials" aria-label="Social links (pending)">
+          <li><span class="social-placeholder">Facebook <em>— account pending</em></span></li>
+          <li><span class="social-placeholder">Instagram <em>— account pending</em></span></li>
+          <li><span class="social-placeholder">YouTube <em>— account pending</em></span></li>
+          <li><span class="social-placeholder">X <em>— account pending</em></span></li>
+        </ul>
+      </div>
+      <div class="join-contact" id="contact">
+        <h3>Contact the project</h3>
+        <p class="contact-callout">
+          <span class="placeholder-email">PROJECT-EMAIL-TO-BE-CONFIRMED@example.com</span>
+        </p>
+        <p class="form-note">Secure contact and file-submission workflow is still an open decision within the project team.</p>
+        <div class="chatbox" id="chatbox" aria-labelledby="chatbox-heading">
+          <h4 id="chatbox-heading">Start the conversation</h4>
+          <p class="chatbox-intro">Share a note, ask to stay updated, or tell us if you hold records connected to this story.</p>
+          <form class="chatbox-form" id="archive-chat-form" action="https://gmail.us12.list-manage.com/subscribe/post?u=20cd95e108a9a5a8ee57596b0&amp;id=f9b81a8113&amp;f_id=00cc41e0f0" method="post" target="_blank">
+            <label for="chat-name">Your name</label>
+            <input id="chat-name" name="FNAME" autocomplete="name" required>
+            <label for="chat-email">Email</label>
+            <input id="chat-email" name="EMAIL" type="email" autocomplete="email" required>
+            <label for="chat-message">Message</label>
+            <textarea id="chat-message" name="message" required></textarea>
+            <label class="chatbox-check"><input type="checkbox" name="updates"> <span>Keep me informed about verified archive updates and the documentary.</span></label>
+            <button class="btn btn--primary" type="submit">Save for review</button>
+            <p class="chatbox-status" id="chatbox-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <p><strong>Justice for Jorge</strong> — working archive, in progress. This page is a draft and has not passed media-law review.</p>
+      <nav aria-label="Footer">
+        <a href="#methodology">Methodology &amp; corrections</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <details class="methodology" id="methodology">
+      <summary>Sources referenced in this draft</summary>
+      <ul>
+        <li><span class="source-label source-label--reporting">Contemporary reporting</span> SouthCoast Today, arrest report, December 29, 1997</li>
+        <li><span class="source-label source-label--court">Court record</span> 2002 direct-appeal decision</li>
+        <li><span class="source-label source-label--court">Court record</span> 2013 medical-record discovery/privacy appeal decision</li>
+        <li><span class="source-label source-label--court">Court record</span> 2016 post-conviction decision</li>
+        <li><span class="source-label source-label--reporting">Contemporary reporting</span> Socialist Worker, 2003 article and Maria DePina quotations</li>
+        <li><span class="source-label source-label--testimony">Personal testimony</span> Jorge DePina's Caught.net letter</li>
+        <li><span class="source-label source-label--court">Court record</span> <cite>DEPINA-7-25-17.pdf</cite>, 63 pages, recovered archive</li>
+      </ul>
+      <p class="form-note">Case citations, court names, and docket numbers are pending verification and are intentionally omitted until confirmed against primary sources.</p>
+    </details>
+    <p class="copyright">© 2026 Justice for Jorge project. Archive in progress. Not for public distribution.</p>
+  </footer>
+
+</body>
+<script>
+  document.getElementById('archive-chat-form')?.addEventListener('submit', function (event) {
+    const status = document.getElementById('chatbox-status');
+    if (!this.elements.updates.checked) {
+      event.preventDefault();
+      status.textContent = 'Check the updates box to join the Mailchimp newsletter. Messages still require a separate approved contact workflow.';
+      return;
+    }
+    status.textContent = 'Opening Mailchimp signup…';
+  });
+</script>
+</html>
