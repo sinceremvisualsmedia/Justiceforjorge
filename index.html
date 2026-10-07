@@ -3,8 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Justice for Jorge — a source-labeled archive documenting the case of Jorge M. DePina, built alongside the documentary THIS IS LIKE A CRIME: The Lost Archive of Failed Justice.">
-  <title>Justice for Jorge — Homepage (Working Draft)</title>
+  <meta name="description" content="Explore 1997, the documentary about Jorge M. DePina: his story, the case timeline, archive material, and life in Cape Verde after his 2020 parole release.">
+  <title>1997 Documentary | Justice for Jorge M. DePina</title>
+  <link rel="canonical" href="https://injustice1997.org/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Justice for Jorge">
+  <meta property="og:title" content="1997 — Justice for Jorge M. DePina">
+  <meta property="og:description" content="Explore 1997, the documentary about Jorge M. DePina: his story, the case timeline, archive material, and life in Cape Verde after his 2020 parole release.">
+  <meta property="og:url" content="https://injustice1997.org/">
+  <meta property="og:image" content="https://injustice1997.org/social-preview.png">
+  <meta property="og:image:alt" content="1997 documentary title over a dark doorway">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="1997 — Justice for Jorge M. DePina">
+  <meta name="twitter:description" content="Explore 1997, the documentary about Jorge M. DePina: his story, the case timeline, archive material, and life in Cape Verde after his 2020 parole release.">
+  <meta name="twitter:image" content="https://injustice1997.org/social-preview.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Justice for Jorge", "alternateName": "1997 Documentary", "url": "https://injustice1997.org/", "description": "Explore 1997, the documentary about Jorge M. DePina: his story, the case timeline, archive material, and life in Cape Verde after his 2020 parole release.", "inLanguage": "en", "sameAs": ["https://www.instagram.com/jorgemdepina_lives/"]}</script>
+  <script src="site-config.js" defer></script>
+  <script src="meta-pixel.js" defer></script>
   <style>
 /* ==========================================================================
    Justice for Jorge — homepage draft
@@ -57,7 +75,8 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 9rem; }
+button { cursor: pointer; font: inherit; }
 
 body {
   margin: 0;
@@ -280,13 +299,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ==========================================================================
    Timeline
    ========================================================================== */
+.timeline .form-note { color: #4a453d; }
 .timeline { background: var(--color-paper); color: var(--color-black); padding: var(--space-6) var(--space-4); }
 .timeline-copy { max-width: 46ch; margin-bottom: var(--space-5); }
 .timeline-copy p { color: #4a453d; }
 
 .timeline-track {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-3);
   border-top: 2px solid var(--color-line-light);
   padding-top: var(--space-4);
@@ -365,7 +385,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   border-radius: var(--radius);
 }
 .signup-row input:focus-visible { outline: var(--focus-ring); outline-offset: 2px; }
-.form-note { font-size: 0.72rem; color: var(--color-muted-dark); margin-top: var(--space-2); }
+.form-note { font-size: 0.82rem; color: var(--color-muted); margin-top: var(--space-2); }
 
 .socials { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-4); }
 .social-placeholder { font-size: 0.78rem; color: var(--color-muted); border: 1px solid var(--color-line); padding: var(--space-1) var(--space-2); border-radius: var(--radius); display: inline-block; }
@@ -425,7 +445,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
    ========================================================================== */
 @media (max-width: 1100px) {
   .hero { grid-template-columns: 1fr; }
-  .hero-media { order: -1; max-width: 26rem; }
+  .hero-media { max-width: 26rem; width: 100%; }
+  .header-inner { flex-wrap: wrap; }
+  .site-nav { order: 3; width: 100%; flex-wrap: wrap; gap: var(--space-3); }
   .mission { grid-template-columns: 1fr; }
   .stats { grid-template-columns: 1fr 1fr; }
   .documentary { grid-template-columns: 1fr; }
@@ -455,6 +477,22 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   html { scroll-behavior: auto; }
   * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
+
+.news-archive { padding: 80px max(24px, calc((100% - 1200px)/2)); background: #151512; scroll-margin-top: 120px; }
+.news-intro { max-width: 680px; margin: 20px 0 32px; }
+.news-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 22px; }
+.news-card { padding: 28px; background: #e7dfcc; color: #211e19; border-top: 4px solid #a72c28; display:flex; flex-direction:column; gap:18px; }
+.news-card .eyebrow { color:#6b3029; font-size:.75rem; }
+.news-card h3 { font-family: Georgia,serif; font-size:1.65rem; line-height:1.2; }
+.news-card p { color:#423c32; }
+.news-card .btn { color:#211e19; border-color:#746957; margin-top:auto; align-self:flex-start; }
+@media(max-width:800px) { .news-grid { grid-template-columns:1fr; } }
+
+.involve-launcher{position:fixed;right:24px;bottom:24px;z-index:101;background:#a72c28;color:#fff;border:1px solid #e7dfcc;border-radius:30px;padding:16px 22px;font:700 15px Arial,sans-serif;cursor:pointer;box-shadow:0 6px 30px #0008}
+.involve-panel{position:fixed;right:24px;bottom:90px;z-index:102;width:min(360px,calc(100vw - 32px));padding:28px;background:#e7dfcc;color:#211e19;border-top:4px solid #a72c28;box-shadow:0 12px 50px #0009;border-radius:8px}
+.involve-panel[hidden]{display:none}.involve-panel h2{font:700 25px/1.2 Georgia,serif;margin:14px 20px 14px 0;color:#211e19}.involve-panel p{color:#423c32;font-size:15px;line-height:1.6;margin-bottom:18px}.involve-panel .helper-label{font:700 11px Arial,sans-serif;letter-spacing:2px;color:#81322a}.involve-close{position:absolute;right:12px;top:12px;background:transparent;border:0;color:#211e19;font-size:25px;width:36px;height:36px;cursor:pointer}.involve-options{display:grid;gap:10px}.involve-options a{display:block;padding:13px 14px;border:1px solid #746957;border-radius:4px;color:#211e19;font:700 14px Arial,sans-serif;text-decoration:none}.involve-options a:hover{background:#d7cbb2}.involve-options a:first-child{background:#a72c28;color:white;border-color:#a72c28}.involve-launcher:focus-visible,.involve-panel a:focus-visible,.involve-close:focus-visible{outline:3px solid #cfa73f;outline-offset:4px}@media(max-width:480px){.involve-launcher{right:16px;bottom:16px}.involve-panel{right:16px;bottom:82px;padding:24px}}
+
+.comment-form{max-width:680px;display:grid;gap:14px;margin-top:24px}.comment-form label{font-weight:bold;color:#e7dfcc}.comment-form input,.comment-form textarea{width:100%;box-sizing:border-box;background:#e7dfcc;border:1px solid #746957;border-radius:4px;color:#211e19;padding:14px;font:16px/1.5 Arial,sans-serif}.comment-form textarea{resize:vertical}.comment-form button{justify-self:start}.comment-form button:disabled{opacity:.6;cursor:wait}#comment-status{min-height:24px;color:#e7dfcc}
   </style>
 </head>
 <body>
@@ -474,7 +512,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
       <nav class="site-nav" aria-label="Primary">
         <a href="#story">The Story</a>
         <a href="#timeline">Timeline</a>
+        <a href="#articles">News &amp; Articles</a>
         <a href="#documentary">Documentary</a>
+        <a href="#media-kit">Media Kit</a>
         <a href="#join">Get Involved</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -483,10 +523,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   </header>
 
   <main id="main">
+    <div class="documentary-banner"><img src="1997-website-banner.png" alt="1997 — Justice for Jorge. The story continues. A Sincere M Visuals Documentary. Based on a true story." fetchpriority="high" style="display:block;width:100%;height:auto"></div>
 
     <!-- ============ HERO ============ -->
     <section class="hero" aria-labelledby="hero-heading">
       <div class="hero-copy">
+        <p class="eyebrow">The documentary · Production underway</p>
         <h1 id="hero-heading">
           <span>A fight for justice.</span>
           <span class="accent">A legacy of truth.</span>
@@ -494,15 +536,16 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
         <p class="hero-intro">
           In December 1997, a fatal altercation outside a Rhode Island nightclub led to Jorge&nbsp;M.&nbsp;DePina's arrest and later conviction.
           <span class="source-label source-label--disputed">Disputed claim</span>
-          His family maintains the case involved corruption and a miscarriage of justice — allegations that have not been established by any court and remain the family's contested position, not a finding of fact.
+          His family maintains the case involved corruption and a miscarriage of justice.
         </p>
+        <p class="hero-intro">Jorge was paroled and released in 2020. He now lives in Cape Verde.</p>
         <div class="hero-actions">
           <a class="btn btn--primary" href="#story">Explore the story</a>
           <a class="btn btn--outline is-placeholder" href="#documentary" aria-describedby="hero-teaser-note">
             Documentary teaser <span class="placeholder-flag">— coming soon</span>
           </a>
         </div>
-        <p id="hero-teaser-note" class="visually-hidden">No teaser footage is available yet. This links to the documentary section for production status.</p>
+        <p id="hero-teaser-note" class="visually-hidden">The pre-trailer is coming soon. This links to the documentary section for production status.</p>
       </div>
       <div class="hero-media">
         <div class="portrait-placeholder" role="img" aria-label="Placeholder. An approved, family-cleared portrait of Jorge M. DePina is required here; none has been supplied yet.">
@@ -517,10 +560,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
         <p class="eyebrow">Our mission</p>
         <h2 id="mission-heading">Preserving the record.</h2>
         <p>
-          This project is a family-led effort to recover a case record that nearly disappeared: a vanished advocacy
-          website, court decisions, and unfinished documentary footage. The aim is a responsible, source-labeled
-          archive — not a verdict. Every claim on this site is marked as court record, contemporary reporting,
-          personal testimony, or a disputed claim.
+          This family-led project brings together Jorge’s story, court records, material recovered from the
+          original advocacy website, and documentary footage. The only material not recovered from the old
+          website was the audio transcripts.
         </p>
         <a class="btn btn--outline" href="#timeline">Learn more about the case →</a>
       </div>
@@ -592,34 +634,73 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
           <span class="source-label source-label--court">Court record</span>
         </li>
         <li class="timeline-entry">
+          <span class="timeline-year">2020</span>
+          <p class="timeline-desc">Jorge is paroled and released. He now lives in Cape Verde.</p>
+          <span class="source-label source-label--testimony">Personal testimony</span>
+        </li>
+        <li class="timeline-entry">
           <span class="timeline-year">2025</span>
-          <p class="timeline-desc">Family resumes documentary production and archive recovery.</p>
+          <p class="timeline-desc">Documentary filming and archive work continue.</p>
           <span class="source-label source-label--testimony">Personal testimony</span>
         </li>
       </ol>
 
-      <a class="btn btn--outline is-placeholder" href="#timeline">
-        View full timeline <span class="placeholder-flag">— page pending</span>
+      <p><strong>Audio archive updates</strong><br>The grand jury and bail hearing audio will be uploaded at a later time. The audio transcripts were the only material not recovered from the original website.</p>
+
+      <a class="btn btn--outline" href="#methodology">
+        Read the source notes
       </a>
+    </section>
+
+    <section class="news-archive" id="articles" aria-labelledby="articles-heading">
+      <p class="eyebrow">From the archive</p>
+      <h2 id="articles-heading">News &amp; Articles</h2>
+      <p class="news-intro">Read coverage of Jorge’s case and accounts preserved from the original advocacy archive.</p>
+      <div class="news-grid">
+        <article class="news-card">
+          <p class="eyebrow">SouthCoast Today · December 29, 1997</p>
+          <h3>Three Mass. men charged in murder</h3>
+          <p>Contemporary reporting on the arrests following the December 1997 incident.</p>
+          <a class="btn btn--outline" href="https://www.southcoasttoday.com/story/news/state/1997/12/29/three-mass-men-charged-in/50585659007/" target="_blank" rel="noopener noreferrer">Read the article ↗</a>
+        </article>
+        <article class="news-card">
+          <p class="eyebrow">Socialist Worker · May 2, 2003</p>
+          <h3>“This is like a crime”</h3>
+          <p>A published letter by John Osmand about the case, including Maria DePina’s words about her son and her continuing fight.</p>
+          <a class="btn btn--outline" href="https://socialistworker.org/2003-1/451/451_04_InnocentMen.php" target="_blank" rel="noopener noreferrer">Read the article ↗</a>
+        </article>
+        <article class="news-card">
+          <p class="eyebrow">Caught.net · Advocacy archive</p>
+          <h3>Jorge’s account of the case</h3>
+          <p>A preserved advocacy page containing Jorge’s first-person account and statements from supporters.</p>
+          <a class="btn btn--outline" href="https://caught.net/cases/depina.htm" target="_blank" rel="noopener noreferrer">Read the account ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="news-archive" id="media-kit" aria-labelledby="media-kit-heading">
+      <p class="eyebrow">Press &amp; documentary inquiries</p>
+      <h2 id="media-kit-heading">1997 · Media Kit</h2>
+      <p class="news-intro">A Sincere M Visuals Documentary · <strong style="color:#d5443c">Based on a True Story</strong></p>
+      <div class="news-grid">
+        <article class="news-card"><h3>About the documentary</h3><p><em>1997</em> follows Jorge M. DePina’s story through his perspective, family accounts, court records, recovered archive material, and new footage. Production is underway, with a pre-trailer forthcoming.</p><p>Jorge was arrested in December 1997. His trial was in 1998. He was paroled and released in 2020 and now lives in Cape Verde.</p><a class="btn btn--outline" href="1997-Press-Sheet.html" target="_blank" rel="noopener">Open printable press sheet ↗</a></article>
+        <article class="news-card"><h3>Press assets</h3><p>Documentary title artwork and production credits for coverage of <em>1997</em>. Please preserve the artwork’s wording and credit Sincere M Visuals.</p><a class="btn btn--outline" href="1997-Title-Artwork.png" download>Download title artwork</a><a href="1997-Media-Kit.txt" download>Download media kit text</a></article>
+        <article class="news-card"><h3>Contact &amp; interviews</h3><p>For press questions, interview requests, and documentary inquiries, contact the project.</p><a class="btn btn--outline" href="mailto:jmdepina3@gmail.com?subject=1997%20Press%20Inquiry">jmdepina3@gmail.com</a><a href="https://www.instagram.com/jorgemdepina_lives/" target="_blank" rel="noopener noreferrer">Instagram · @jorgemdepina_lives ↗</a></article>
+      </div>
     </section>
 
     <!-- ============ DOCUMENTARY FEATURE ============ -->
     <section class="documentary" id="documentary" aria-labelledby="documentary-heading">
       <div class="documentary-media">
-        <div class="video-placeholder" role="img" aria-label="Placeholder. Documentary teaser video has not been produced yet. No footage is playable here.">
-          <span class="video-placeholder-label">Justice for Jorge<br><strong>The Documentary</strong></span>
-          <span class="play-btn" aria-hidden="true">▶</span>
-          <span class="placeholder-flag">Teaser not yet produced</span>
-        </div>
+        <img src="1997-pre-trailer-thumbnail.png" alt="1997 — Documentary in production. Pre-trailer coming soon. A Sincere M Visuals Documentary, based on a true story." style="display:block;width:100%;height:auto;border:1px solid #463d30" loading="lazy">
       </div>
       <div class="documentary-copy">
         <p class="eyebrow">The documentary</p>
         <h2 id="documentary-heading">A story they tried to bury.</h2>
         <p>
-          <em>THIS IS LIKE A CRIME: The Lost Archive of Failed Justice</em> is an archival prologue, targeted at
-          8–12 minutes, documenting the family's effort to recover a vanished advocacy website, court records, and
-          unfinished footage. It is presented as a surviving record, not a verdict, and ends with an open call for
-          witnesses and material.
+          The documentary follows Jorge’s story through the family’s perspective, court records,
+          recovered website material, and new footage. Jorge was paroled and released in 2020
+          and now lives in Cape Verde. Production is underway, with a pre-trailer coming soon.
         </p>
         <div class="hero-actions">
           <a class="btn btn--primary" href="#join">Get notified</a>
@@ -627,8 +708,25 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
             Watch teaser <span class="placeholder-flag">— coming soon</span>
           </a>
         </div>
-        <p id="teaser-note-2" class="visually-hidden">No teaser footage is available yet.</p>
+        <p id="teaser-note-2" class="visually-hidden">The pre-trailer is coming soon.</p>
       </div>
+    </section>
+
+
+    <section class="news-archive" id="comments" aria-labelledby="comments-heading">
+      <p class="eyebrow">Join the conversation</p>
+      <h2 id="comments-heading">Leave a comment</h2>
+      <p class="news-intro">Share a message for Jorge or a thought about the documentary. Please keep comments respectful and avoid posting private information.</p>
+      <form id="comment-form" class="comment-form">
+        <label for="comment-name">Your name</label>
+        <input id="comment-name" name="name" autocomplete="name" maxlength="80" required>
+        <label for="comment-message">Your comment</label>
+        <textarea id="comment-message" name="message" rows="5" minlength="3" maxlength="2000" required placeholder="Write your message here…"></textarea>
+        <div hidden aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+        <p class="form-note">Comments are sent to the project team for review. Submitting a comment does not publish it automatically.</p>
+        <button class="btn btn--primary" type="submit">Send comment</button>
+        <p id="comment-status" role="status" aria-live="polite"></p>
+      </form>
     </section>
 
     <!-- ============ JOIN THE ARCHIVE ============ -->
@@ -637,45 +735,28 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
         <p class="eyebrow">Join the movement</p>
         <h2 id="join-heading">Stay connected to the archive.</h2>
         <p>
-          Get updates as records are recovered, verified, and published. If you were present, represented a party,
+          Get updates on the documentary and newly published archive material. If you were present, represented a party,
           reported on the case, or hold photographs, tapes, or documents, the project wants to hear from you.
         </p>
-        <form class="signup-form" action="#" method="post">
+        <form class="signup-form" action="https://gmail.us12.list-manage.com/subscribe/post?u=20cd95e108a9a5a8ee57596b0&amp;id=f9b81a8113&amp;f_id=00cc41e0f0" method="post" target="_blank">
           <label for="signup-email">Email address</label>
           <div class="signup-row">
-            <input id="signup-email" name="email" type="email" placeholder="Enter your email" autocomplete="email" required>
+            <input id="signup-email" name="EMAIL" type="email" placeholder="Enter your email" autocomplete="email" required>
             <button class="btn btn--primary" type="submit">Stay updated</button>
           </div>
-          <p class="form-note">This form is not yet connected to an email service. Please do not submit personal information until it is.</p>
+          <p class="form-note">By selecting Stay updated, you agree to receive project and documentary emails through Mailchimp. You can unsubscribe at any time. Signup opens in a new tab.</p>
         </form>
-        <ul class="socials" aria-label="Social links (pending)">
-          <li><span class="social-placeholder">Facebook <em>— account pending</em></span></li>
-          <li><span class="social-placeholder">Instagram <em>— account pending</em></span></li>
-          <li><span class="social-placeholder">YouTube <em>— account pending</em></span></li>
-          <li><span class="social-placeholder">X <em>— account pending</em></span></li>
+        <ul class="socials" aria-label="Social links">
+          <li><a class="btn btn--outline" href="https://www.instagram.com/jorgemdepina_lives/" target="_blank" rel="noopener noreferrer">Instagram · @jorgemdepina_lives</a></li>
         </ul>
       </div>
       <div class="join-contact" id="contact">
         <h3>Contact the project</h3>
         <p class="contact-callout">
-          <span class="placeholder-email">PROJECT-EMAIL-TO-BE-CONFIRMED@example.com</span>
+          <a href="mailto:jmdepina3@gmail.com">jmdepina3@gmail.com</a>
         </p>
-        <p class="form-note">Secure contact and file-submission workflow is still an open decision within the project team.</p>
-        <div class="chatbox" id="chatbox" aria-labelledby="chatbox-heading">
-          <h4 id="chatbox-heading">Start the conversation</h4>
-          <p class="chatbox-intro">Share a note, ask to stay updated, or tell us if you hold records connected to this story.</p>
-          <form class="chatbox-form" id="archive-chat-form" action="https://gmail.us12.list-manage.com/subscribe/post?u=20cd95e108a9a5a8ee57596b0&amp;id=f9b81a8113&amp;f_id=00cc41e0f0" method="post" target="_blank">
-            <label for="chat-name">Your name</label>
-            <input id="chat-name" name="FNAME" autocomplete="name" required>
-            <label for="chat-email">Email</label>
-            <input id="chat-email" name="EMAIL" type="email" autocomplete="email" required>
-            <label for="chat-message">Message</label>
-            <textarea id="chat-message" name="message" required></textarea>
-            <label class="chatbox-check"><input type="checkbox" name="updates"> <span>Keep me informed about verified archive updates and the documentary.</span></label>
-            <button class="btn btn--primary" type="submit">Save for review</button>
-            <p class="chatbox-status" id="chatbox-status" role="status" aria-live="polite"></p>
-          </form>
-        </div>
+        <p class="form-note">For documentary inquiries or to share information about the case, email Jorge.</p>
+
       </div>
     </section>
 
@@ -705,16 +786,47 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
     <p class="copyright">© 2026 Justice for Jorge project. Archive in progress. Not for public distribution.</p>
   </footer>
 
-</body>
-<script>
-  document.getElementById('archive-chat-form')?.addEventListener('submit', function (event) {
-    const status = document.getElementById('chatbox-status');
-    if (!this.elements.updates.checked) {
-      event.preventDefault();
-      status.textContent = 'Check the updates box to join the Mailchimp newsletter. Messages still require a separate approved contact workflow.';
-      return;
+
+  <aside class="involve-panel" id="involve-panel" aria-labelledby="involve-title" hidden>
+    <button class="involve-close" type="button" aria-label="Close project helper">×</button>
+    <span class="helper-label">JUSTICE FOR JORGE · PROJECT HELPER</span>
+    <h2 id="involve-title">Would you like to get involved?</h2>
+    <p>Follow Jorge’s story, contribute to the archive, or connect with the documentary team.</p>
+    <div class="involve-options">
+      <a href="#join">Keep me updated</a>
+      <a href="mailto:jmdepina3@gmail.com?subject=Information%20for%20the%20Jorge%20DePina%20archive">I have information to share</a>
+      <a href="mailto:jmdepina3@gmail.com?subject=Documentary%20inquiry">Contact the documentary team</a>
+      <a href="https://www.instagram.com/jorgemdepina_lives/" target="_blank" rel="noopener noreferrer">Follow Jorge on Instagram ↗</a>
+    </div>
+  </aside>
+  <button class="involve-launcher" type="button" aria-controls="involve-panel" aria-expanded="false">Get involved</button>
+  <script>
+  (() => {
+    const panel = document.getElementById('involve-panel');
+    const launcher = document.querySelector('.involve-launcher');
+    const close = panel.querySelector('.involve-close');
+    let timer;
+    const dismissed = () => { try { return sessionStorage.getItem('jorge-helper-dismissed') === '1'; } catch { return false; } };
+    function setOpen(open, focus = false) {
+      panel.hidden = !open;
+      launcher.setAttribute('aria-expanded', String(open));
+      if (focus) (open ? close : launcher).focus();
     }
-    status.textContent = 'Opening Mailchimp signup…';
-  });
-</script>
+    function dismiss(focus = false) {
+      clearTimeout(timer);
+      try { sessionStorage.setItem('jorge-helper-dismissed', '1'); } catch {}
+      setOpen(false, focus);
+    }
+    launcher.addEventListener('click', () => { clearTimeout(timer); if(panel.hidden) setOpen(true, true); else dismiss(true); });
+    close.addEventListener('click', () => dismiss(true));
+    panel.addEventListener('keydown', event => { if(event.key === 'Escape') dismiss(true); });
+    panel.querySelectorAll('a').forEach(link => link.addEventListener('click', () => dismiss(false)));
+    if (!dismissed()) timer = setTimeout(() => {
+      if (!document.activeElement || !document.activeElement.matches('input,textarea,select,button,a')) setOpen(true);
+    }, 12000);
+  })();
+  </script>
+
+<script src="comments.js" defer></script>
+</body>
 </html>
